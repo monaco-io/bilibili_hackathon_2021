@@ -1,0 +1,1 @@
+from .kawayi import Anime

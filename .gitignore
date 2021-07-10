@@ -133,3 +133,5 @@ dmypy.json
 .idea
 __pycache__
 tempCodeRunnerFile.py
+
+anime/
