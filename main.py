@@ -1,3 +1,4 @@
+from kawayi import Anime
 from router import app
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a9a4bb9934012cf1a462e0bdfc14ed914a60f7c52d579ea1ede52e472b6d8061"
+            "sha256": "91cc7c3348404c4d87fb3d45d63c483011d46b7d64ea2dbbf3e742207d548421"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -184,6 +184,22 @@
             "hashes": [
                 "sha256:0c55fd6bd98178c54a26638287ef7b50f86237c82fd1628433ce921325097105",
                 "sha256:ac0cc48173522c9af91031d6d070794df4e3bd60c7098e95a36cdada07255640"
+            ],
+            "index": "pypi",
+            "version": "==3.0.457"
+        },
+        "tencentcloud-sdk-python-common": {
+            "hashes": [
+                "sha256:51a73d8749f08d53a14c24ea681f4287c7a0927052870561528866f0b4525e7a",
+                "sha256:54c2fbb8f931f8154cb9138b5ef178afa3441d855157d1af7358fec7c6b0a17e"
+            ],
+            "index": "pypi",
+            "version": "==3.0.457"
+        },
+        "tencentcloud-sdk-python-cvm": {
+            "hashes": [
+                "sha256:45c929b87722bfa96c11f58f2031e1b8989efd1b7d4c16165c4c590c11a20c76",
+                "sha256:7a2022b89c8888276e98a7385843c85c1aafa16ac766769d71444f8c30a549ea"
             ],
             "index": "pypi",
             "version": "==3.0.457"

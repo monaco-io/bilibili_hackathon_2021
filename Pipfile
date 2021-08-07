@@ -9,6 +9,8 @@ flask = "*"
 tencentcloud-sdk-python = "*"
 pillow = "*"
 flask-cors = "*"
+tencentcloud-sdk-python-common = "*"
+tencentcloud-sdk-python-cvm = "*"
 
 [dev-packages]
 

@@ -36,7 +36,7 @@ def index():
 
             # with open(label_img) as img:
             #     return str(base64.b64encode(img.read()))
-            return send_file(anime_img, mimetype='image/png')
+            return send_file(label_img, mimetype='image/png')
 
         try:
             return run()
@@ -51,8 +51,8 @@ def img_paths(__uuid: str):
 # return static image path
 
 
-def _kawayi(fpath: str, fpath_anime: str, fpath_label: str):
+def _kawayi(fpath: str, fpath_anime: str, fpath_label: str, is_tencent: bool = False):
     log.info("正在进行图片包转换中", fpath, fpath_anime)
-    anime(fpath, fpath_anime, fpath_label)
+    anime(fpath, fpath_anime, fpath_label, is_tencent)
     log.info("恭喜你转换卡通成功!!!")
     return
