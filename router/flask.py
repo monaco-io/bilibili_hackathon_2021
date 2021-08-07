@@ -17,19 +17,22 @@ image_folder = os.path.join(
 
 @app.route("/")
 def index():
-    _kawayi("xxx")
+    __uuid = uuid.uuid4()
+    local_img, anime_img = img_paths(__uuid)
+    print(local_img, anime_img)
+    # TODO 把文件保存到地址 local_img
+
+    _kawayi(local_img)
     return "kawayi"
 
 
-def img_path(p):
-    return os.path.join(image_folder, p)
-
-
-def cal(_uuid):
-    return anime(img_path(_uuid+".png"), img_path(_uuid+"_anime.png"))
-
+def img_paths(__uuid: str):
+    return os.path.join(image_folder, __uuid + ".png"), os.path.join(image_folder, __uuid + "_anime.png")
 
 # 以下は、試しに動かしてみる
 # return static image path
-def _kawayi(fpath: str) -> str:
-    pass
+
+
+def _kawayi(fpath: str):
+    print("恭喜你转换卡通成功!!!")
+    return
