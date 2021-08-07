@@ -32,10 +32,11 @@ def index():
 
             f = request.files.get('file')
             f.save(local_img)
-            _kawayi(local_img, anime_img, label_img)
-
-            # with open(label_img) as img:
-            #     return str(base64.b64encode(img.read()))
+            # is_tencent = request.form.get("is_tencent")
+            is_tencent = True
+            tencent_cdn_path = _kawayi(local_img, anime_img, label_img, is_tencent)
+            if is_tencent:
+                return tencent_cdn_path
             return send_file(label_img, mimetype='image/png')
 
         try:
