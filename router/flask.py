@@ -1,7 +1,10 @@
 import logging
 import os
+import uuid
 
-from flask import Flask
+from kawayi import Anime
+
+from flask import Flask, request
 
 from ..kawayi import Anime
 
@@ -18,15 +21,24 @@ image_folder = os.path.join(
 log = logging.Logger()
 
 
-@app.route("/")
+@app.route("/upload", methods=["POST"])
 def index():
-    __uuid = uuid.uuid4()
-    local_img, anime_img = img_paths(__uuid)
-    print(local_img, anime_img)
-    # TODO 把文件保存到地址 local_img
+    if request.method == "POST":
+        def run():
+            __uuid = uuid.uuid4()
+            local_img, anime_img = img_paths(str(__uuid))
+            log.info("生成文件地址", local_img, anime_img)
 
-    _kawayi(local_img, anime_img)
-    return "kawayi"
+            f = request.files.get('file')
+            f.save(local_img)
+            _kawayi(local_img, anime_img)
+            return "kawayi"
+
+        try:
+            return run()
+        except Exception as e:
+            log.error(e)
+            return str(e.with_traceback())
 
 
 def img_paths(__uuid: str):
