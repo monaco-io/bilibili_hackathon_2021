@@ -4,15 +4,8 @@ import uuid
 
 from kawayi import Anime
 
-from flask import Flask
-from flask import request
-from flask import send_file
+from flask import Flask, request, send_file
 
-<< << << < HEAD
-# from kawayi import Anime
-
-== == == =
->>>>>> > 03b3fc95be0b017e2d5156806ac4613c9d45d3d4
 app = Flask(__name__)
 
 anime = Anime()
