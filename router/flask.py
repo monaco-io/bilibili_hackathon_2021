@@ -37,7 +37,7 @@ def index():
             f = request.files.get('file')
             f.save(local_img)
             _kawayi(local_img, anime_img, label_img)
-            return send_file(anime_img, 'image/png')
+            return send_file(label_img, 'image/png')
 
         try:
             return run()
