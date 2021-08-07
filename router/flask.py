@@ -1,8 +1,9 @@
+import logging
 import os
 
-from kawayi import Anime
-
 from flask import Flask
+
+from ..kawayi import Anime
 
 app = Flask(__name__)
 
@@ -14,6 +15,8 @@ image_folder = os.path.join(
     "../image"
 )
 
+log = logging.Logger()
+
 
 @app.route("/")
 def index():
@@ -22,7 +25,7 @@ def index():
     print(local_img, anime_img)
     # TODO 把文件保存到地址 local_img
 
-    _kawayi(local_img)
+    _kawayi(local_img, anime_img)
     return "kawayi"
 
 
@@ -33,6 +36,8 @@ def img_paths(__uuid: str):
 # return static image path
 
 
-def _kawayi(fpath: str):
-    print("恭喜你转换卡通成功!!!")
+def _kawayi(fpath: str, fpath_anime: str):
+    log.info("正在进行图片包转换中", fpath, fpath_anime)
+    anime(fpath, fpath_anime)
+    log.info("恭喜你转换卡通成功!!!")
     return
