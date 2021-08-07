@@ -43,7 +43,7 @@ class Anime():
     def __call__(self, file_path, new_path, new_label_path=None, is_tencent=False) -> str:
         if is_tencent:
             self.add_label(file_path, new_label_path)
-            return self.__call_tencent(new_label_path, new_path)
+            return self.__call_tencent(new_label_path)
         else:
             self.__call_baidu(file_path, new_path)
             if new_label_path:
