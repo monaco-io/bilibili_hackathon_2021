@@ -4,9 +4,11 @@ import uuid
 
 from kawayi import Anime
 
-from flask import Flask, request
+from flask import Flask
+from flask import request
+from flask import send_file
 
-from ..kawayi import Anime
+# from kawayi import Anime
 
 app = Flask(__name__)
 
@@ -18,7 +20,7 @@ image_folder = os.path.join(
     "../image"
 )
 
-log = logging.Logger()
+log = logging.Logger('haha')
 
 
 @app.route("/upload", methods=["POST"])
@@ -32,7 +34,7 @@ def index():
             f = request.files.get('file')
             f.save(local_img)
             _kawayi(local_img, anime_img)
-            return "kawayi"
+            return send_file(anime_img, 'image/png')
 
         try:
             return run()
