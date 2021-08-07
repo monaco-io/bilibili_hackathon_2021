@@ -1,7 +1,13 @@
 import base64
+import os
+
+from PIL import Image
 
 from .config import *
 from .sdk.aip import AipImageProcess
+
+LABEL_SUMMER = os.path.join(os.path.dirname(
+    __file__), "../static/bilibili_summer.png")
 
 
 class Anime():
@@ -11,8 +17,10 @@ class Anime():
 
     """ 读取图片 """
 
-    def __call__(self, file_path, new_path):
-        return self.__calculate(file_path, new_path)
+    def __call__(self, file_path, new_path, new_label_path=None):
+        self.__calculate(file_path, new_path, new_label_path)
+        if new_label_path is not None:
+            self.add_label(new_path, new_label_path)
 
     def __get_file_content(self, filePath):
         with open(filePath, 'rb') as fp:
@@ -44,3 +52,14 @@ class Anime():
         # print("image_b64: ", image_b64)
         self.__save_base64_img(image_b64, new_path)
         return new_path
+
+    def add_label(self, file_path, file_label_path):
+        img = Image.open(file_path)
+        label_img = Image.open(LABEL_SUMMER)
+        layer = Image.new('RGBA', img.size, (0, 0, 0, 0))
+        layer.paste(label_img, (0, 0))
+        out = Image.composite(layer, img, layer)
+        out.save(file_label_path)
+
+        img.close()
+        label_img.close()
