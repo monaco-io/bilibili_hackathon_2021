@@ -1,8 +1,10 @@
 import os
-
-from kawayi import Anime
+import uuid
 
 from flask import Flask
+from flask import request
+
+from kawayi import Anime
 
 app = Flask(__name__)
 
@@ -15,15 +17,17 @@ image_folder = os.path.join(
 )
 
 
-@app.route("/")
+@app.route("/upload", methods=["POST"])
 def index():
-    __uuid = uuid.uuid4()
-    local_img, anime_img = img_paths(__uuid)
-    print(local_img, anime_img)
-    # TODO 把文件保存到地址 local_img
+    if request.method == "POST":
+        __uuid = uuid.uuid4()
+        local_img, anime_img = img_paths(str(__uuid))
+        print(local_img, anime_img)
 
-    _kawayi(local_img)
-    return "kawayi"
+        f = request.files.get('file')
+        f.save(local_img)
+        _kawayi(local_img)
+        return "kawayi"
 
 
 def img_paths(__uuid: str):
@@ -36,3 +40,7 @@ def img_paths(__uuid: str):
 def _kawayi(fpath: str):
     print("恭喜你转换卡通成功!!!")
     return
+
+
+if __name__ == "__main__":
+    print('fuck')
