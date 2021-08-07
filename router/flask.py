@@ -1,7 +1,9 @@
+import base64
 import logging
 import os
 import uuid
 
+from flask_cors import cross_origin
 from kawayi import Anime
 
 from flask import Flask, request, send_file
@@ -20,6 +22,7 @@ log = logging.Logger("bilibili-anime")
 
 
 @app.route("/upload", methods=["POST"])
+@cross_origin()
 def index():
     if request.method == "POST":
         def run():
@@ -30,13 +33,15 @@ def index():
             f = request.files.get('file')
             f.save(local_img)
             _kawayi(local_img, anime_img, label_img)
-            return send_file(label_img, 'image/png')
+
+            # with open(label_img) as img:
+            #     return str(base64.b64encode(img.read()))
+            return send_file(anime_img, mimetype='image/png')
 
         try:
             return run()
         except Exception as e:
-            log.error(e)
-            return str(e.with_traceback())
+            log.error("crash !!!", e)
 
 
 def img_paths(__uuid: str):

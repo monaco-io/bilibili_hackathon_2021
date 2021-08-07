@@ -8,6 +8,7 @@ requests = "*"
 flask = "*"
 tencentcloud-sdk-python = "*"
 pillow = "*"
+flask-cors = "*"
 
 [dev-packages]
 

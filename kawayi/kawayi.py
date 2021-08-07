@@ -18,8 +18,8 @@ class Anime():
     """ 读取图片 """
 
     def __call__(self, file_path, new_path, new_label_path=None):
-        self.__calculate(file_path, new_path, new_label_path)
-        if new_label_path is not None:
+        self.__calculate(file_path, new_path)
+        if new_label_path:
             self.add_label(new_path, new_label_path)
 
     def __get_file_content(self, filePath):
